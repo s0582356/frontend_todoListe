@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import TheWelcome from '@/components/TheWelcome.vue'
 </script>
 
 <template>
@@ -18,6 +19,8 @@ import HelloWorld from './components/HelloWorld.vue'
   </header>
 
   <RouterView />
+  <TheWelcome />
+
 </template>
 
 <style scoped>
@@ -83,3 +86,5 @@ nav a:first-of-type {
   }
 }
 </style>
+
+
