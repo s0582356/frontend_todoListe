@@ -1,4 +1,6 @@
+
 <template>
+ <!--          (Zur Info diesen kompletten Bereich habe ich auskommentiert ! Altan)
   <div class="todo-list">
     <h2 class="title">Meine Aufgaben</h2>
     <div v-for="(todo, index) in todoList" :key="index" class="todo-item">
@@ -6,15 +8,19 @@
       <p class="todo-description">{{ todo.description }}</p>
     </div>
   </div>
+
+  -->
 </template>
 
 <script lang="ts" setup>
+/**
 import { ref } from 'vue'
 
 interface Todo {
   title: string
   description: string
 }
+
 
 const todoList = ref<Todo[]>([
   { title: 'Hinzufügen', description: 'Hier fügst du deine Aufgaben ein.' },
@@ -23,6 +29,7 @@ const todoList = ref<Todo[]>([
   { title: 'Erinnern', description: 'Hier wirst du an deinen Aufgaben erinnert.' },
   { title: 'Kategorisieren', description: 'Hier kannst du deine Aufgaben Kategorisieren.' }
 ])
+ */
 </script>
 
 
