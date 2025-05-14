@@ -12,18 +12,18 @@ const items = [
   <div>
     <h1>Unsere Komponente mit einer einfachen ToDo-Liste</h1>
 
-    <!-- Einfachste v-for Implementierung -->
+
     <div v-for="(item, index) in items" :key="index">
-      [ ] {{ item }} <!-- So wird es garantiert angezeigt -->
+      [ ] {{ item }}
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Zwingendes Basis-Styling für Sichtbarkeit */
+
 div {
   font-size: 18px;
-  color: green; /* Sicherstellen dass Text sichtbar ist */
+  color: green;
   margin: 10px;
   padding: 5px;
 }

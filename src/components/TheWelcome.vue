@@ -1,6 +1,6 @@
 
 <template>
- <!--          (Zur Info diesen kompletten Bereich habe ich auskommentiert ! Altan)
+ <!--          (Zur Info diesen kompletten Bereich haben wir auskommentiert ! Altan)
   <div class="todo-list">
     <h2 class="title">Meine Aufgaben</h2>
     <div v-for="(todo, index) in todoList" :key="index" class="todo-item">
