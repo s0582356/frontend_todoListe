@@ -15,6 +15,7 @@ import TheWelcome from '@/components/TheWelcome.vue'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/komp">Liste</RouterLink>
+        <RouterLink to="/todos">Todos</RouterLink>  <!-- Dieser Link wurde für Meilenstein 3 erstellt -->
 
       </nav>
     </div>

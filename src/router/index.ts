@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import OurList from "@/components/OurList.vue";
+import TodoListView from '@/components/TodoListView.vue'  // Neue Import Meilenstein 3
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +24,13 @@ const router = createRouter({
       path: '/komp',
       name: 'liste',
       component: OurList,
+    },
+    {                   // Dieser Pfad wurde neu erstellt Meilenstein 03
+      path: '/todos',  // Geänderter Pfad
+      name: 'todos',   // Neuer Name
+      component: TodoListView  // Neue Komponente
     }
+
   ],
 })
 
