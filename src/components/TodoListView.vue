@@ -9,9 +9,11 @@ interface Todo {
 
 const todos = ref<Todo[]>([])
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 onMounted(async () => {
   try {
-    const response = await fetch('http://localhost:8080/todos')
+    const response = await fetch(baseUrl + '/todos')
     todos.value = await response.json()
   } catch (error) {
     console.error('Fehler beim Laden:', error)
