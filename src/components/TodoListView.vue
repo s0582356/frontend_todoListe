@@ -9,7 +9,7 @@ interface Todo {
 
 const todos = ref<Todo[]>([])
 
-const baseUrl = import.meta.env.VITE_BASE_URL
+const baseUrl = import.meta.env.VITE_BACKEND_BASE_URL
 
 onMounted(async () => {
   try {
