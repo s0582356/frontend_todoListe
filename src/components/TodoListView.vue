@@ -40,7 +40,7 @@ onMounted(async () => {
 }
 
 .todo-item {
-  background: #f8f9fa;
+  background: #f0f4f8;
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -50,5 +50,10 @@ onMounted(async () => {
 .todo-item h3 {
   margin-top: 0;
   color: #2c3e50;
+}
+
+.todo-item p {
+  margin: 0.25rem 0;
+  color: #555;
 }
 </style>
