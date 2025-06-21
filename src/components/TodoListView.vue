@@ -90,6 +90,20 @@ const toggleTodo = async (id: number) => {
     alert('Todo konnte nicht aktualisiert werden!');
   }
 };
+
+const deleteOneTodo = async (id: number) => {
+  if(!confirm('Dieses Todo wirklich löschen?')) return
+
+  try {
+    const response = await fetch(`${API_URL}/todos/${id}`, { method: 'DELETE' });
+
+    if (!response.ok) throw new Error();
+    todos.value = todos.value.filter(todo => todo.id !== id);
+  } catch (error) {
+    console.error('Fehler beim Löschen:', error);
+    alert('Todo konnte nicht gelöscht werden!');
+  }
+}
 </script>
 
 <template>
@@ -127,6 +141,7 @@ const toggleTodo = async (id: number) => {
         <div class="todo-status">
           <button @click="toggleTodo(todo.id)">
             {{ todo.completed ? '✅' : '❌' }}</button>
+          <button @click="deleteOneTodo(todo.id)" class="delete-one-btn">🗑️</button>
         </div>
       </div>
     </div>
@@ -209,5 +224,10 @@ button:disabled {
   text-align: center;
   color: #888;
   padding: 20px;
+}
+.delete-one-btn {
+  margin-left: 10px;
+  background: #ff6b6b;
+  color: white;
 }
 </style>
