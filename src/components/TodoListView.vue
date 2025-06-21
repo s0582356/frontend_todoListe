@@ -73,6 +73,23 @@ const deleteAllTodos = async () => {
     alert('Löschen aller Todos fehlgeschlagen!');
   }
 };
+
+const toggleTodo = async (id: number) => {
+  try {
+    const response = await fetch(`${API_URL}/todos/${id}`,{ method: 'PUT'});
+
+    if (!response.ok) throw new Error();
+
+    const updatedTodo = await response.json();
+    const index = todos.value.findIndex(t => t.id === id);
+    if (index > -1) {
+      todos.value[index] = updatedTodo;
+    }
+  } catch (error) {
+    console.error('Fehler beim Umschalten:', error);
+    alert('Todo konnte nicht aktualisiert werden!');
+  }
+};
 </script>
 
 <template>
@@ -108,7 +125,8 @@ const deleteAllTodos = async () => {
           <p>{{ todo.description }}</p>
         </div>
         <div class="todo-status">
-          <span>{{ todo.completed ? '✅' : '❌' }}</span>
+          <button @click="toggleTodo(todo.id)">
+            {{ todo.completed ? '✅' : '❌' }}</button>
         </div>
       </div>
     </div>
