@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue'
 
 interface Todo {
   id: number;
@@ -12,6 +12,10 @@ const todos = ref<Todo[]>([]);
 const newTodo = ref({ title: '', description: '', completed: false });
 const showTodos = ref(false);
 const isLoading = ref(false);
+const filter = ref<'Alle' | 'Erledigt' | 'Offen'>('Alle');
+const sortBy = ref<'Status' | 'Alphabetisch'>('Status');
+const search = ref('');
+const isDarkMode = ref(true);
 
 const API_URL = 'http://localhost:8080/api';
 
@@ -104,13 +108,40 @@ const deleteOneTodo = async (id: number) => {
     alert('Todo konnte nicht gelöscht werden!');
   }
 }
+
+const filteredAndSortedTodos = computed(() => {
+  let filtered = todos.value;
+
+  if (filter.value === 'Erledigt') {
+    filtered = filtered.filter(t => t.completed);
+  } else if (filter.value === 'Offen') {
+    filtered = filtered.filter(t => !t.completed);
+  }
+
+  if (search.value.trim()) {
+    const term = search.value.toLowerCase();
+    filtered = filtered.filter(t => t.title.toLowerCase().includes(term) || t.description.toLowerCase().includes(term));
+  }
+
+  if (sortBy.value === 'Alphabetisch') {
+    filtered = [...filtered].sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortBy.value === 'Status') {
+    filtered = [...filtered].sort((a, b) => Number(a.completed) - Number(b.completed));
+  }
+  return filtered;
+});
 </script>
 
 <template>
-  <div class="todo-app">
+  <div :class="['todo-app', isDarkMode ? 'dark' : 'light']">
+    <button @click="isDarkMode = !isDarkMode">
+      {{ isDarkMode ? '🌞 Light' : '🌙 Dark' }}
+    </button>
+
     <h2>Meine Todos</h2>
 
-    <!-- Eingabeformular -->
+
+  <!-- Eingabeformular -->
     <div class="todo-form">
       <input v-model="newTodo.title" placeholder="Titel*" required>
       <input v-model="newTodo.description" placeholder="Beschreibung">
@@ -131,9 +162,24 @@ const deleteOneTodo = async (id: number) => {
       </button>
     </div>
 
+    <div class="filters">
+      <input v-model="search" type="text" placeholder="suchen..." />
+
+      <select v-model= "filter">
+        <option value="Alle">Alle</option>
+        <option value="Erledigt">Erledigt</option>
+        <option value="Offen">Offen</option>
+      </select>
+
+      <select v-model= "sortBy">
+        <option value="Status">Status</option>
+        <option value="Alphabetisch">Alphabetisch</option>
+      </select>
+    </div>
+
     <!-- Todo-Liste -->
     <div v-if="showTodos && todos.length > 0" class="todo-list">
-      <div v-for="todo in todos" :key="todo.id" class="todo-item">
+      <div v-for="todo in filteredAndSortedTodos" :key="todo.id" class="todo-item">
         <div class="todo-content">
           <h3>{{ todo.title }}</h3>
           <p>{{ todo.description }}</p>
@@ -157,6 +203,8 @@ const deleteOneTodo = async (id: number) => {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  background: #282828;
+  color: white;
 }
 
 .todo-form {
@@ -229,5 +277,24 @@ button:disabled {
   margin-left: 10px;
   background: #ff6b6b;
   color: white;
+}
+.filters {
+  display: flex;
+  gap: 5px;
+  padding-top: 10px;
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+}
+.filters input,
+.filters select {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+.todo-app.light{
+  background: #f9f9f9;
+  color: #222222;
 }
 </style>
