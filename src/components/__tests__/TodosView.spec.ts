@@ -41,5 +41,12 @@ describe('TodosView - einfacher Test', () => {
     expect(options.map(o => o.text())).toEqual(['Alle', 'Erledigt', 'Offen'])
   })
 
-
+  it('zeigt den Dark/Light button korrekt an', async () => {
+    const wrapper = mount(TodosView)
+    const rootDiv = wrapper.find('.todo-app')
+    expect(rootDiv.classes()).toContain('dark')
+    const toggleButton = wrapper.find('button')
+    await toggleButton.trigger('click')
+    expect(rootDiv.classes()).toContain('light')
+  })
 })
