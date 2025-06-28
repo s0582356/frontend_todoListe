@@ -1,90 +1,60 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from '@/components/TheWelcome.vue'
 </script>
 
 <template>
   <header>
-
-    <div class="wrapper">
-
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/komp">Liste</RouterLink>
-        <RouterLink to="/todos">Todos</RouterLink>  <!-- Dieser Link wurde für Meilenstein 3 erstellt -->
+        <RouterLink to="/todos">Deine Todos</RouterLink>  <!-- Dieser Link wurde für Meilenstein 3 erstellt -->
 
       </nav>
-    </div>
   </header>
 
+  <main>
   <RouterView />
-  <TheWelcome />
+    </main>
 
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+  background-color: #1e1e2f;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+nav a {
+  display: inline-block;
+  border-left: 1px solid var(--color-border);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  position: relative;
+  padding: 0.5rem;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  background-color: transparent;
 }
 
 nav a.router-link-exact-active {
   color: var(--color-text);
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
 nav a:first-of-type {
   border: 0;
 }
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
+@media (min-width: 600px) {
   nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+    justify-content: center;
   }
 }
 </style>
