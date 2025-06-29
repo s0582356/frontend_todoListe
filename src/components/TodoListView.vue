@@ -203,7 +203,7 @@ const filteredAndSortedTodos = computed(() => {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background: #282828;
+  background: #2c3e50;
   color: white;
 }
 
@@ -216,7 +216,34 @@ const filteredAndSortedTodos = computed(() => {
 .todo-form input {
   flex: 1;
   padding: 8px;
+  background-color: #486683;     /* dunkler, angenehmer Farbton */
+  color: #e6e6e6;                   /* heller Text */
+  border: 1px solid rgba(68, 68, 68, 0.99);
+  border-radius: 6px;
+  transition: background-color 0.2s, border-color 0.2s;
 }
+
+.todo-form input::placeholder,
+.filters input::placeholder {
+  color: #cccccc; /* weißlich-blassgrau */
+  opacity: 1;
+}
+
+.filters input:focus,
+.filters select:focus {
+  outline: none;
+  border-color: #00ffd5;
+  background-color: #5a7997;
+  color: #f0f0f0;
+}
+
+
+.todo-form input:focus {
+  outline: none;
+  border-color: #00ffd5;         /* leuchtendes Türkis beim Fokus */
+  background-color: #3d566e;
+}
+
 
 .controls {
   display: flex;
@@ -238,9 +265,37 @@ button {
 }
 
 .delete-all-btn {
-  background: #ff4757;
+  background-color: #ff6b6b;   /* Sichtbare Grundfarbe */
   color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 8px 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+
+.delete-all-btn:hover {
+  background-color: #ff8787;   /* etwas heller beim Hover */
+  transform: scale(1.05);
+}
+
+
+.todo-form button {
+  background-color: #00b894;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.todo-form button:hover {
+  background-color: #00ffd5;
+  transform: scale(1.05);
+}
+
 
 button:disabled {
   background: #ddd;
@@ -289,12 +344,24 @@ button:disabled {
 .filters select {
   flex: 1;
   padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #486683;
+  color: #e6e6e6;
   font-size: 14px;
+  transition: background-color 0.2s, border-color 0.2s;
 }
-.todo-app.light{
-  background: #f9f9f9;
-  color: #222222;
-}
+
 </style>
+// dieser veranlasst Änderung auch außerhalb des jeweiligen div Containers
+<style>
+
+  body {
+    background-color: #1f2e47;
+    margin: 0;
+    padding: 0;
+  }
+
+
+</style>
+
